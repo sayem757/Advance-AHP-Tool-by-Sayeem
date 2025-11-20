@@ -368,6 +368,19 @@ elif selection == "📊 Final Results":
         else:
             st.success("✅ Consistency Check Passed. These weights are scientifically valid.")
 
+        # Pairwise Comparison Matrix Table
+        st.markdown("<div class='st-card'>", unsafe_allow_html=True)
+        st.markdown("#### 📋 Pairwise Comparison Matrix")
+        
+        # Create dataframe for pairwise matrix
+        df_pairwise = pd.DataFrame(A, index=factors, columns=factors)
+        
+        st.dataframe(
+            df_pairwise.style.format("{:.4f}").background_gradient(cmap="RdYlGn", axis=None),
+            use_container_width=True
+        )
+        st.markdown("</div>", unsafe_allow_html=True)
+
         # Visualization & Table
         c_vis, c_tab = st.columns([3, 2])
         
